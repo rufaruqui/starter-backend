@@ -96,7 +96,24 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-jwt (0.9.0)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.6)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
+    dry-auto_inject (0.8.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.13.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.6)
+    dry-container (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
+    dry-core (0.7.1)
+      concurrent-ruby (~> 1.0)
     erubi (1.11.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -110,6 +127,7 @@ GEM
       activesupport (>= 5.0.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
+    jwt (2.4.1)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -118,7 +136,8 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.2)
+    mini_portile2 (2.8.0)
+    minitest (5.16.3)
     mongo (2.18.1)
       bson (>= 4.14.1, < 5.0.0)
     mongoid (7.0.13)
@@ -126,7 +145,8 @@ GEM
       mongo (>= 2.7.0, < 3.0.0)
     msgpack (1.5.4)
     nio4r (2.5.8)
-    nokogiri (1.13.8-arm64-darwin)
+    nokogiri (1.13.8)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     public_suffix (4.0.7)
@@ -215,13 +235,18 @@ GEM
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    warden-jwt_auth (0.6.0)
+      dry-auto_inject (~> 0.8)
+      dry-configurable (~> 0.13)
+      jwt (~> 2.1)
+      warden (~> 1.2)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.0)
 
 PLATFORMS
-  arm64-darwin-21
+  ruby
 
 DEPENDENCIES
   annotate
@@ -230,6 +255,8 @@ DEPENDENCIES
   debug
   delayed_job_mongoid
   devise
+  devise-jwt
+  dotenv-rails
   jbuilder
   mongoid (~> 7.0.5)
   mongoid-enum!
@@ -244,7 +271,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.1p18
+   ruby 2.6.9p207
 
 BUNDLED WITH
-   2.3.7
+   1.17.2
