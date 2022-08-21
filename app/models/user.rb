@@ -1,15 +1,14 @@
-class Api::V1::User
+class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :validatable
-  
-  devise :database_authenticatable,
+
+  devise :database_authenticatable, :rememberable,  :validatable, :recoverable,
          :jwt_authenticatable,
          :registerable,
-         jwt_revocation_strategy: Api::V1::JwtDenylist
-
+         jwt_revocation_strategy: JwtDenylist
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""

@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'b7f07912771636e82b799c17d8940405ed111304d0b95fea4ac09583502f97777c2e43f01ad04f0625a8007400c6c8610899f63569db5a5e003e4f8842e13627'
+  # config.secret_key = 'd93f0b280ff69597103804199e1a68d67ddc9c7c18416d4e45020ef9b5704ee1798e2afef3f75ecc00b7258b8ae9629b96e2a9554578dbe4d03350f3f790b2f1'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '93e6cd54247a6af4fae4bb1f8e6698550cddd0323f7c7e6afb9a9b6b536eeb874c07d790d9aa11b72239920d0dd8065e20722b287698ad8a1abd1c0f73fa76bc'
+  # config.pepper = '7396c311aa35d6451b25a764e705d8c33d1766db955a0e879423f47750e620639aea771dd22b92d465ec86a30cf1e9f6e602b182b24792386ba28fc5d00920c2'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -309,15 +309,29 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
+  # y = YAML.load_file("a.env")
+  
+  # p y['DEVISE_JWT_SECRET_KEY']
+
+  # config.jwt do |jwt|
+  #   jwt.secret = y['DEVISE_JWT_SECRET_KEY']
+  #   jwt.dispatch_requests = [
+  #     ['POST', %r{^/sign_in$}]
+  #   ]
+  #   jwt.revocation_requests = [
+  #     ['DELETE', %r{^/sign_out$}]
+  #   ]
+  #   jwt.expiration_time = 15.day.to_i
+  # end
+
   config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    jwt.dispatch_requests = [
+    jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+      jwt.dispatch_requests = [
       ['POST', %r{^/sign_in$}]
     ]
     jwt.revocation_requests = [
       ['DELETE', %r{^/sign_out$}]
     ]
-    jwt.expiration_time = 15.day.to_i
+    jwt.expiration_time = 1.day.to_i
   end
-  
 end
