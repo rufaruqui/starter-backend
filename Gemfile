@@ -13,8 +13,8 @@ ruby "2.6.9"
 
 
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2' 
-gem 'mongoid', '~> 7.0.5'
-gem "mongoid-enum", :git => 'https://github.com/choilive/mongoid-enum.git'
+# gem 'mongoid', '~> 7.0.5'
+# gem "mongoid-enum", :git => 'https://github.com/choilive/mongoid-enum.git'
 gem "rack-cors"
 gem "rswag"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -22,9 +22,11 @@ gem "bootsnap", require: false
 gem 'rack-attack'
 gem 'rack-timeout'
 gem 'delayed_job_mongoid'
-gem 'devise' 
-gem 'devise-jwt'
-
+gem 'devise'  
+gem 'devise_token_auth'
+gem 'pg', '~> 1.1'
+gem 'annotate'
+gem 'omniauth'
 
 group :development, :test do
    gem "rspec-rails"
